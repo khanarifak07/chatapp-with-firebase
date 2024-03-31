@@ -42,6 +42,7 @@ class LoginPage extends StatelessWidget {
                 hintText: "Password",
                 prefixIcon: Icons.lock,
                 controller: passCtrl,
+                obscure: true,
               ),
               const SizedBox(height: 16),
               KElevatedButton(

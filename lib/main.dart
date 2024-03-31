@@ -1,8 +1,8 @@
 import 'package:chatapp_firebase/constants/constants.dart';
 import 'package:chatapp_firebase/firebase_options.dart';
 import 'package:chatapp_firebase/helper/helper_function.dart';
-import 'package:chatapp_firebase/screens/home_page.dart';
 import 'package:chatapp_firebase/screens/auth/login_page.dart';
+import 'package:chatapp_firebase/screens/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,9 @@ class _MyAppState extends State<MyApp> {
   getUserLoggedInStatus() {
     HelperFunctions.getUserLoggedInStatus().then((value) {
       if (value != null) {
-        _isSignedIn = value;
+        setState(() {
+          _isSignedIn = value;
+        });
       }
     });
   }

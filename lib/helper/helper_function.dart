@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:chatapp_firebase/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -8,6 +10,20 @@ class HelperFunctions {
   static String userEmailKey = "USEREMAILKEY";
 
   //saving data to shared pref
+  static Future<bool> saveUserLoggedInStatus(bool isUserLoggedIn) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setBool(userLoggedInKey, isUserLoggedIn);
+  }
+
+  static Future<bool> saveUserNameSF(String userName) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString(userNameKey, userName);
+  }
+
+  static Future<bool> saveUserEmailSF(String userEmail) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString(userEmailKey, userEmail);
+  }
 
   //getting data from shared pref
   static Future<bool?> getUserLoggedInStatus() async {

@@ -11,7 +11,7 @@ class KTextField extends StatelessWidget {
     required this.hintText,
     required this.prefixIcon,
     required this.controller,
-    this.obscure = true,
+    this.obscure = false,
   });
 
   @override
