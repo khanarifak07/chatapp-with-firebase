@@ -6,7 +6,23 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  //login
+//login
+  Future<QuerySnapshot> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      // Login
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      // Make the query snapshot to get the data from the database
+      QuerySnapshot snapshot = await _firestore
+          .collection("users")
+          .where("email", isEqualTo: email)
+          .get();
+
+      return snapshot; // Return the query snapshot
+    } on FirebaseException catch (e) {
+      throw Exception(e.code);
+    }
+  }
 
   //register
   Future<UserCredential> registerWithEmailAndPassword(
@@ -31,4 +47,11 @@ class AuthService {
   }
 
   //logout
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      e.toString();
+    }
+  }
 }
