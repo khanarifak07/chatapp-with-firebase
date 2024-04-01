@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
         isLoading = true;
       });
 
-      await authService.registerWithEmailAndPassword(
+      authService.registerWithEmailAndPassword(
           fullNameCtrl.text, emailCtrl.text, passCtrl.text);
 
       //save user detials in shared pref

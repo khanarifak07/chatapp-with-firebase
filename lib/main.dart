@@ -1,8 +1,6 @@
 import 'package:chatapp_firebase/constants/constants.dart';
 import 'package:chatapp_firebase/firebase_options.dart';
-import 'package:chatapp_firebase/helper/helper_function.dart';
-import 'package:chatapp_firebase/screens/auth/login_page.dart';
-import 'package:chatapp_firebase/screens/home_page.dart';
+import 'package:chatapp_firebase/services/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,38 +23,15 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
-  bool _isSignedIn = false;
-
-  @override
-  void initState() {
-    super.initState();
-    getUserLoggedInStatus();
-  }
-
-  getUserLoggedInStatus() {
-    HelperFunctions.getUserLoggedInStatus().then((value) {
-      if (value != null) {
-        setState(() {
-          _isSignedIn = value;
-        });
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      home: _isSignedIn ? const HomePage() : const LoginPage(),
+      home: AuthGate(),
     );
   }
 }
